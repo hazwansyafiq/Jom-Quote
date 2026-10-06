@@ -1,10 +1,10 @@
 {
-  "name": "Jom Quote \u2014 Takaful Quick Quote",
+  "name": "Jom Quote — MG Muqmeen Group",
   "short_name": "Jom Quote",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f4f6f8",
-  "theme_color": "#0b1220",
+  "background_color": "#f4f7fa",
+  "theme_color": "#071b3a",
   "orientation": "portrait",
   "icons": [
     {

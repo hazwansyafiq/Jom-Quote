@@ -8,73 +8,68 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>Quick Quote — Medical Card</title>
 <style>
-:root{--bg:#f4f6f8;--card:#fff;--ink:#101828;--muted:#667085;--line:#e4e7ec;--shadow:0 12px 32px rgba(16,24,40,.08)}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-header{background:linear-gradient(135deg,#0b1220,#182230);color:#fff;padding:22px 18px 24px}.wrap{max-width:760px;margin:auto}
-.brand{font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.72}h1{margin:6px 0 4px;font-size:27px;line-height:1.1}.sub{margin:0;color:#cbd5e1;font-size:14px}
-.tabs{display:flex;gap:8px;margin:16px 0 0}.tab{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;padding:9px 12px;border-radius:10px;font-weight:700;font-size:13px;cursor:pointer}.tab.active{background:#fff;color:#0b1220}
-main{padding:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);margin-bottom:16px}
-.section-title{font-size:14px;font-weight:800;margin:0 0 13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:7px}
-label{font-size:12px;font-weight:700;color:#475467}input,select{width:100%;padding:12px 13px;border:1px solid #d0d5dd;border-radius:11px;font-size:16px;background:#fff;color:var(--ink);outline:none}input:focus,select:focus{border-color:#84adff;box-shadow:0 0 0 3px #dbe8ff}.full{grid-column:1/-1}
-.result{background:linear-gradient(135deg,#0b1220,#182230);color:#fff;border-radius:16px;padding:20px;margin-top:16px}.result .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.65}
-.price{font-size:38px;font-weight:850;letter-spacing:-.03em;margin:4px 0}.price small{font-size:15px;font-weight:600;opacity:.7}.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.pill{background:rgba(255,255,255,.1);padding:7px 9px;border-radius:9px;font-size:12px}
-.actions{display:flex;gap:9px;margin-top:15px;flex-wrap:wrap}button.primary,button.secondary,button.danger{border:0;border-radius:11px;padding:12px 14px;font-weight:800;cursor:pointer}
-button.primary{background:#fff;color:#0b1220}button.secondary{background:#eef2f6;color:#101828}button.danger{background:#fee4e2;color:#b42318}
-.benefits{display:grid;gap:9px}.benefit{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.benefit:last-child{border-bottom:0}.benefit b{text-align:right}
-.note{font-size:11px;line-height:1.5;color:var(--muted);margin-top:12px}.hidden{display:none!important}.rate-table{width:100%;border-collapse:collapse;font-size:12px}
-.rate-table th,.rate-table td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right}.rate-table th:first-child,.rate-table td:first-child{text-align:left}
-.rate-table input{padding:6px;font-size:12px;border-radius:7px;text-align:right;min-width:70px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.small{font-size:12px;color:var(--muted)}
-.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#101828;color:#fff;padding:10px 14px;border-radius:10px;font-size:13px;display:none;z-index:10}
-@media(max-width:560px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.price{font-size:34px}main{padding:12px}}
-@media print{
-  header,.tabs,#homePanel,#medicalPanel,#adminPanel{display:none!important}
-  body{background:#fff}
-  main{padding:0;max-width:none}
-  #printQuote{display:block!important}
-  .print-wrap{padding:36px 44px;font-family:Arial,sans-serif;color:#101828}
-  .print-brand{font-size:12px;letter-spacing:.16em;font-weight:800;color:#667085}
-  .print-title{font-size:25px;font-weight:800;margin:6px 0 4px}
-  .print-sub{font-size:12px;color:#667085;margin-bottom:26px}
-  .print-section{font-size:12px;font-weight:800;letter-spacing:.08em;margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid #d0d5dd}
-  .print-details{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;font-size:13px}
-  .print-details div{padding:7px 0;border-bottom:1px solid #eaecf0}
-  .print-details b{display:block;font-size:10px;color:#667085;text-transform:uppercase;margin-bottom:3px}
-  .print-price{font-size:25px;font-weight:800;margin:10px 0 4px}
-  .print-benefits{display:grid;gap:7px;font-size:12px}
-  .print-benefit{display:flex;justify-content:space-between;gap:20px;padding:6px 0;border-bottom:1px solid #eaecf0}
-  .print-benefit b{text-align:right}
-  .print-note{font-size:10px;line-height:1.5;color:#667085;margin-top:24px}
+:root{
+  --navy:#071b3a;--navy2:#0b315d;--blue:#0879bd;--teal:#10b7bd;--red:#ed1b2f;--red2:#ff3045;
+  --gold:#f5b719;--bg:#f4f7fa;--card:#fff;--ink:#10213b;--muted:#65748b;--line:#e3e9f1;
+  --shadow:0 16px 42px rgba(7,27,58,.10);--radius:22px
 }
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#f5f8fb 0%,#eef4f8 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+button,input,select{font:inherit}
+.wrap{max-width:900px;margin:auto}
+header{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy) 0%,#0a2b51 62%,#0b6f94 100%);color:#fff;padding:18px 18px 28px;box-shadow:0 8px 28px rgba(7,27,58,.18)}
+header:before,header:after{content:"";position:absolute;pointer-events:none;transform:skewX(-25deg);opacity:.9}
+header:before{width:250px;height:520px;right:-80px;top:-170px;background:linear-gradient(180deg,rgba(237,27,47,.95),rgba(237,27,47,.08));}
+header:after{width:170px;height:500px;right:85px;top:-180px;background:linear-gradient(180deg,rgba(16,183,189,.85),rgba(16,183,189,0));}
+.header-inner{position:relative;z-index:1;display:flex;align-items:center;gap:14px}
+.logo{width:58px;height:58px;object-fit:contain;flex:0 0 auto;filter:drop-shadow(0 4px 10px rgba(0,0,0,.22))}
+.brand-block{min-width:0}.brand{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#f7c94b;font-weight:900}.brand-title{font-size:28px;font-weight:900;letter-spacing:-.03em;line-height:1.05;margin-top:2px}.sub{margin:4px 0 0;color:#d8e7f5;font-size:13px}
+.header-actions{display:flex;gap:8px;margin-top:16px;position:relative;z-index:2}.tab{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.09);color:#fff;padding:10px 13px;border-radius:12px;font-weight:800;font-size:13px;cursor:pointer;backdrop-filter:blur(8px)}.tab.active{background:#fff;color:var(--navy);box-shadow:0 5px 18px rgba(0,0,0,.12)}
+main{padding:22px 18px 40px}.card{background:rgba(255,255,255,.96);border:1px solid rgba(227,233,241,.95);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);margin-bottom:17px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#f8fbfd 55%,#e7f7f8 100%);padding:28px 24px}.hero:after{content:"";position:absolute;width:230px;height:230px;right:-80px;bottom:-105px;border-radius:50%;background:linear-gradient(135deg,rgba(237,27,47,.9),rgba(16,183,189,.75));opacity:.9}.hero-content{position:relative;z-index:1;max-width:620px}.hero-kicker{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;background:#eef7fb;color:#0879bd;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.hero h2{margin:11px 0 6px;font-size:30px;letter-spacing:-.035em;line-height:1.05}.hero h2 span{color:var(--red)}.hero .small{font-size:14px;max-width:580px}
+.feature-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}.feature{display:flex;align-items:center;gap:8px;padding:9px 11px;border-radius:12px;background:#fff;border:1px solid #e8edf3;font-size:12px;font-weight:800;box-shadow:0 4px 12px rgba(7,27,58,.05)}.feature i{font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--red),#ff5363);color:#fff}
+.section-title{font-size:15px;font-weight:900;margin:0 0 14px}.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:900;color:#77869a}.small{font-size:12px;color:var(--muted)}
+.product-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:12px}.product-card{position:relative;overflow:hidden;display:grid;grid-template-columns:45px 1fr 22px;align-items:center;text-align:left;gap:11px;width:100%;min-height:92px;padding:15px;border:1px solid #dfe7ef;background:linear-gradient(135deg,#fff,#f9fbfd);border-radius:17px;cursor:pointer;transition:.18s ease}.product-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--red),var(--teal));opacity:0}.product-card:hover{transform:translateY(-2px);border-color:#b9c9d8;box-shadow:0 10px 24px rgba(7,27,58,.09)}.product-card:hover:before{opacity:1}.product-card b{display:block;font-size:15px}.product-card span{display:block;color:#667085;font-size:12px;margin-top:3px}.product-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:23px;background:linear-gradient(135deg,#eef8ff,#e9fbfb);border:1px solid #d8edf2}.product-card.disabled{opacity:.46;cursor:not-allowed;transform:none}.product-card.disabled:before{display:none}
+.topbar{display:flex;align-items:center;gap:12px;margin:0 0 13px;padding:0 2px}.topbar div{display:flex;flex-direction:column;gap:2px}.topbar div span{font-size:11px;color:#667085}.back{border:1px solid #dce4ed;background:#fff;border-radius:11px;padding:9px 11px;font-weight:900;cursor:pointer;box-shadow:0 4px 10px rgba(7,27,58,.04)}
+.quote-card{padding:21px}.form-head{display:flex;align-items:center;gap:11px;margin-bottom:15px}.form-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#fff0f2,#e9f9fb);border:1px solid #f1dfe2;font-size:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:flex;flex-direction:column;gap:7px}.full{grid-column:1/-1}label{font-size:11px;font-weight:900;color:#52627a;letter-spacing:.04em}input,select{width:100%;padding:13px 14px;border:1px solid #cfd9e4;border-radius:12px;font-size:16px;background:#fff;color:var(--ink);outline:none;transition:.15s}input:focus,select:focus{border-color:#0b8bb0;box-shadow:0 0 0 4px rgba(16,183,189,.12)}
+.result{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy) 0%,#0b315d 60%,#087d93 100%);color:#fff;border-radius:18px;padding:21px;margin-top:17px;box-shadow:0 14px 28px rgba(7,27,58,.2)}.result:after{content:"♡";position:absolute;right:18px;top:12px;font-size:84px;line-height:1;color:rgba(255,255,255,.08);font-weight:300}.result>*{position:relative;z-index:1}.result .eyebrow{color:#cfe1ef}.price{font-size:42px;font-weight:950;letter-spacing:-.04em;margin:4px 0}.price small{font-size:14px;font-weight:700;opacity:.72}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.1);padding:7px 9px;border-radius:999px;font-size:11px;font-weight:800}.actions{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}button.primary,button.secondary,button.danger{border:0;border-radius:12px;padding:12px 14px;font-weight:900;cursor:pointer}button.primary{background:linear-gradient(135deg,#fff,#eef6fb);color:var(--navy)}button.primary:first-child{background:linear-gradient(135deg,var(--red),#ff4052);color:#fff}button.secondary{background:#eef2f6;color:#101828}button.danger{background:#fee4e2;color:#b42318}
+.benefits{display:grid;gap:0}.benefit{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}.benefit:last-child{border-bottom:0}.benefit b{text-align:right;color:#1b3659}.note{font-size:11px;line-height:1.55;color:var(--muted);margin-top:13px}.hidden{display:none!important}
+.rate-table{width:100%;border-collapse:collapse;font-size:12px}.rate-table th,.rate-table td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right}.rate-table th:first-child,.rate-table td:first-child{text-align:left}.rate-table input{padding:6px;font-size:12px;border-radius:7px;text-align:right;min-width:70px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 15px;border-radius:999px;font-size:13px;display:none;z-index:10;box-shadow:0 10px 24px rgba(7,27,58,.25)}
+@media(max-width:760px){.product-grid{grid-template-columns:1fr}.wrap{max-width:100%}.hero h2{font-size:27px}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.price{font-size:36px}main{padding:14px 12px 30px}.header-inner{align-items:flex-start}.logo{width:50px;height:50px}.brand-title{font-size:23px}.card{border-radius:18px;padding:17px}.hero{padding:23px 18px}.feature-row{display:grid;grid-template-columns:1fr 1fr}.feature{font-size:11px}.actions button{flex:1}.result{padding:18px}}
+@media print{
+  header,.tabs,#homePanel,#medicalPanel,#adminPanel{display:none!important}body{background:#fff}main{padding:0;max-width:none}#printQuote{display:block!important}.print-wrap{padding:36px 44px;font-family:Arial,sans-serif;color:#101828}.print-brand{font-size:12px;letter-spacing:.14em;font-weight:900;color:#0b315d}.print-title{font-size:25px;font-weight:900;margin:6px 0 4px}.print-sub{font-size:12px;color:#667085;margin-bottom:26px}.print-section{font-size:12px;font-weight:900;letter-spacing:.08em;margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid #d0d5dd}.print-details{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;font-size:13px}.print-details div{padding:7px 0;border-bottom:1px solid #eaecf0}.print-details b{display:block;font-size:10px;color:#667085;text-transform:uppercase;margin-bottom:3px}.print-price{font-size:25px;font-weight:900;margin:10px 0 4px}.print-benefits{display:grid;gap:7px;font-size:12px}.print-benefit{display:flex;justify-content:space-between;gap:20px;padding:6px 0;border-bottom:1px solid #eaecf0}.print-benefit b{text-align:right}.print-note{font-size:10px;line-height:1.5;color:#667085;margin-top:24px}}
 #printQuote{display:none}
-
-.hero h2{margin:5px 0 4px;font-size:25px}
-.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;opacity:.65}
-.product-grid{display:grid;gap:10px}
-.product-card{display:grid;grid-template-columns:44px 1fr 20px;align-items:center;text-align:left;gap:12px;width:100%;padding:15px;border:1px solid #e4e7ec;background:#fff;border-radius:14px;cursor:pointer}
-.product-card:hover{border-color:#98a2b3;box-shadow:0 5px 18px rgba(16,24,40,.06)}
-.product-card b{display:block;font-size:15px}.product-card span{display:block;color:#667085;font-size:12px;margin-top:3px}.product-icon{font-size:26px}.product-card.disabled{opacity:.5;cursor:not-allowed;background:#f8fafc}
-.topbar{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:0 2px}
-.topbar div{display:flex;flex-direction:column;gap:2px}.topbar div span{font-size:11px;color:#667085}
-.back{border:0;background:#fff;border:1px solid #e4e7ec;border-radius:10px;padding:9px 11px;font-weight:800;cursor:pointer}
-.header-actions{display:flex;gap:8px;margin-top:14px}
 </style>
 </head>
 <body>
 <header><div class="wrap">
-      <div class="brand">JOM QUOTE</div>
-      <h1>Takaful Quick Quote</h1>
-      <p class="sub">Your fast quotation tool</p>
-      <div class="header-actions">
-        <button class="tab active" id="tabHome" onclick="showHome()">Products</button>
-        <button class="tab" id="tabAdmin" onclick="showTab('admin')">Rate Management</button>
-      </div>
-    </div></header>
+  <div class="header-inner">
+    <img class="logo" src="mg-logo.png" alt="MG Muqmeen Group">
+    <div class="brand-block">
+      <div class="brand">MUQMEEN GROUP</div>
+      <div class="brand-title">JOM QUOTE</div>
+      <p class="sub">Takaful Quick Quote • Fast. Simple. Indicative.</p>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="tab active" id="tabHome" onclick="showHome()">Products</button>
+    <button class="tab" id="tabAdmin" onclick="showTab('admin')">Rate Management</button>
+  </div>
+</div></header>
 <main class="wrap">
 <section id="homePanel">
   <div class="card hero">
-    <div class="eyebrow">JOM QUOTE</div>
-    <h2>Quick Takaful Quotation</h2>
-    <p class="small">Fast, simple and indicative quotation tool.</p>
+    <div class="hero-content">
+      <div class="hero-kicker">⚡ Instant contribution estimate</div>
+      <h2>Protect what matters.<br><span>Quote it in seconds.</span></h2>
+      <p class="small">A simple, professional quotation tool for fast Takaful conversations — whether you're meeting a prospect or going live on TikTok.</p>
+      <div class="feature-row">
+        <div class="feature"><i>✓</i> Fast &amp; simple</div>
+        <div class="feature"><i>✓</i> Indicative quote</div>
+        <div class="feature"><i>✓</i> Ready to share</div>
+      </div>
+    </div>
   </div>
 
   <div class="card">
@@ -105,8 +100,11 @@ button.primary{background:#fff;color:#0b1220}button.secondary{background:#eef2f6
     <div><b>Medical Card</b><span>Quick Quote</span></div>
   </div>
 
-  <div class="card" id="quoteForm">
-    <p class="section-title">Prospect Details</p>
+  <div class="card quote-card" id="quoteForm">
+    <div class="form-head">
+      <div class="form-icon">🛡️</div>
+      <div><p class="section-title" style="margin:0 0 3px">Prospect Details</p><div class="small">Fill in the details below to get an instant quotation.</div></div>
+    </div>
     <div class="grid">
       <div class="field full"><label>NAME</label><input id="name" placeholder="Prospect name"></div>
       <div class="field"><label>DATE OF BIRTH</label><input id="dob" type="date"></div>
@@ -147,7 +145,7 @@ button.primary{background:#fff;color:#0b1220}button.secondary{background:#eef2f6
 
 <section id="printQuote">
   <div class="print-wrap">
-    <div class="print-brand">JOM QUOTE</div>
+    <div class="print-brand">MG MUQMEEN GROUP • JOM QUOTE</div>
     <div class="print-title">Medical Card — Quick Quotation</div>
     <div class="print-sub">Indicative contribution estimate</div>
 
