@@ -209,13 +209,105 @@ function showTab(which){
   document.getElementById("tabAdmin").classList.toggle("active",admin);
   if(admin)renderRates();
 }
-function quoteText(){
+function formatDob(dob){
+  if(!dob)return "—";
+  const d=new Date(dob+"T00:00:00");
+  return d.toLocaleDateString("en-GB",{day:"2-digit",month:"long",year:"numeric"});
+}
+function quoteData(){
   const name=document.getElementById("name").value.trim()||"Prospect",dob=document.getElementById("dob").value;
   const g=document.getElementById("gender").value,s=document.getElementById("smoker").value,a=calcAge(dob),rate=selectedRate(a,g,s);
-  return `${name}\nMedical Card\nAge: ${a} | ${g==="male"?"Male":"Female"} | ${s==="ns"?"Non-Smoker":"Smoker"}\nEstimated contribution: ${money(rate)} / month\nMedical Treatment: RM200,000 annually (Unlimited Lifetime)\nRoom & Board: RM200/day\nHeart Attack, Cancer & Kidney: RM1,000,000`;
+  return {name,dob,age:a,gender:g==="male"?"Male":"Female",smoker:s==="ns"?"Non-Smoker":"Smoker",rate};
+}
+function quoteText(){
+  const q=quoteData();
+  return `${q.name}\nMEDICAL CARD — QUICK QUOTATION\n\nProspect Details\nAge: ${q.age}\nDate of Birth: ${formatDob(q.dob)}\nGender: ${q.gender}\nSmoking Status: ${q.smoker}\n\nEstimated Monthly Contribution: ${money(q.rate)} / month\n\nMedical Card Benefits\n• Medical Treatment: RM200,000 annually (Unlimited Lifetime)\n• Hospital Room & Board: RM200/day\n• Heart Attack, Cancer & Kidney Benefits: RM1,000,000\n• Treatment Allowance: RM100/day\n• Death Benefit: RM10,000\n• Extended Care: Vaccination reimbursement + RM100/day hospital allowance\n• Outpatient: Pre/Post Hospitalisation, Day Care/Surgery, Ambulance, Chemotherapy, Radiotherapy, Physiotherapy, etc.\n\nIndicative quotation only. Final contribution is subject to eligibility, underwriting, certificate terms and conditions, and the applicable official quotation.`;
+}
+function pdfEscape(text){return String(text).replace(/\\/g,"\\\\").replace(/\(/g,"\\(").replace(/\)/g,"\\)");}
+function generateQuotePdf(){
+  const q=quoteData();
+  const lines=[
+    "JOM QUOTE",
+    "MEDICAL CARD — QUICK QUOTATION",
+    "",
+    "PROSPECT DETAILS",
+    `Name: ${q.name}`,
+    `Age: ${q.age}`,
+    `Date of Birth: ${formatDob(q.dob)}`,
+    `Gender: ${q.gender}`,
+    `Smoking Status: ${q.smoker}`,
+    "",
+    `ESTIMATED MONTHLY CONTRIBUTION: ${money(q.rate)} / month`,
+    "",
+    "MEDICAL CARD BENEFITS",
+    "• Medical Treatment: RM200,000 annually (Unlimited Lifetime)",
+    "• Hospital Room & Board: RM200/day",
+    "• Heart Attack, Cancer & Kidney Benefits: RM1,000,000",
+    "• Treatment Allowance: RM100/day",
+    "• Death Benefit: RM10,000",
+    "• Extended Care: Vaccination reimbursement + RM100/day hospital allowance",
+    "• Outpatient: Pre/Post Hospitalisation, Day Care/Surgery, Ambulance,",
+    "  Chemotherapy, Radiotherapy, Physiotherapy, etc.",
+    "",
+    "DISCLAIMER",
+    "Indicative quotation only. Final contribution is subject to eligibility,",
+    "underwriting, certificate terms and conditions, and the applicable",
+    "official quotation."
+  ];
+  const pageW=595,pageH=842,left=48,top=790,bottom=48,lineH=16;
+  const chunks=[]; let current=[]; let y=top;
+  for(const line of lines){
+    const h=(line==="JOM QUOTE"||line==="MEDICAL CARD — QUICK QUOTATION"||line.startsWith("ESTIMATED MONTHLY"))?20:lineH;
+    if(y-h<bottom){chunks.push(current);current=[];y=top;}
+    current.push({line,y,bold:line==="JOM QUOTE"||line==="MEDICAL CARD — QUICK QUOTATION"||line.startsWith("ESTIMATED MONTHLY")||line.endsWith("DETAILS")||line==="MEDICAL CARD BENEFITS"||line==="DISCLAIMER"});
+    y-=h;
+  }
+  if(current.length)chunks.push(current);
+
+  const objects=[];
+  objects.push(`<< /Type /Catalog /Pages 2 0 R >>`);
+  const pageNums=[];
+  const fontRegular=3,fontBold=4;
+  chunks.forEach((page,idx)=>{
+    const content=[];
+    content.push("BT");
+    page.forEach(item=>{
+      const size=item.bold?(item.line.startsWith("ESTIMATED")?16: item.line==="JOM QUOTE"?18:13):10;
+      const font=item.bold?fontBold:fontRegular;
+      content.push(`/F${font===fontBold?"B":"R"} ${size} Tf`);
+      content.push(`1 0 0 1 ${left} ${item.y} Tm`);
+      content.push(`(${pdfEscape(item.line)}) Tj`);
+    });
+    content.push("ET");
+    const stream=content.join("\n");
+    const contentObj=objects.length+1;
+    objects.push(`<< /Length ${stream.length} >>\nstream\n${stream}\nendstream`);
+    const pageObj=objects.length+1;
+    objects.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageW} ${pageH}] /Resources << /Font << /FR ${fontRegular} 0 R /FB ${fontBold} 0 R >> >> /Contents ${contentObj} 0 R >>`);
+    pageNums.push(pageObj);
+  });
+  const pagesObj=objects.length+1;
+  objects[1]=`<< /Type /Pages /Kids [${pageNums.map(n=>n+" 0 R").join(" ")}] /Count ${pageNums.length} >>`;
+  objects.push(`<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>`);
+  objects.push(`<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>`);
+
+  let pdf="%PDF-1.4\n"; const offsets=[0];
+  for(let i=0;i<objects.length;i++){
+    offsets[i+1]=pdf.length;
+    pdf+=`${i+1} 0 obj\n${objects[i]}\nendobj\n`;
+  }
+  const xref=pdf.length;
+  pdf+=`xref\n0 ${objects.length+1}\n0000000000 65535 f \n`;
+  for(let i=1;i<offsets.length;i++)pdf+=String(offsets[i]).padStart(10,"0")+" 00000 n \n";
+  pdf+=`trailer\n<< /Size ${objects.length+1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`;
+  const blob=new Blob([pdf],{type:"application/pdf"});
+  const a=document.createElement("a");
+  const safeName=(q.name||"Prospect").replace(/[^a-z0-9_-]+/gi,"_").replace(/^_+|_+$/g,"")||"Prospect";
+  a.href=URL.createObjectURL(blob);a.download=`Jom-Quote-${safeName}.pdf`;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
 }
 async function copyQuote(){
-  try{await navigator.clipboard.writeText(quoteText());showToast("Quote copied")}catch(e){showToast("Copy unavailable")}
+  try{await navigator.clipboard.writeText(quoteText());generateQuotePdf();showToast("Quote copied + PDF generated")}catch(e){generateQuotePdf();showToast("PDF generated; copy unavailable")}
 }
 function resetQuote(){
   ["name","dob"].forEach(id=>document.getElementById(id).value="");
