@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Quick Quote — Medical Card</title>
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--ink:#101828;--muted:#667085;--line:#e4e7ec;--shadow:0 12px 32px rgba(16,24,40,.08)}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+header{background:linear-gradient(135deg,#0b1220,#182230);color:#fff;padding:22px 18px 24px}.wrap{max-width:760px;margin:auto}
+.brand{font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.72}h1{margin:6px 0 4px;font-size:27px;line-height:1.1}.sub{margin:0;color:#cbd5e1;font-size:14px}
+.tabs{display:flex;gap:8px;margin:16px 0 0}.tab{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;padding:9px 12px;border-radius:10px;font-weight:700;font-size:13px;cursor:pointer}.tab.active{background:#fff;color:#0b1220}
+main{padding:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);margin-bottom:16px}
+.section-title{font-size:14px;font-weight:800;margin:0 0 13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:7px}
+label{font-size:12px;font-weight:700;color:#475467}input,select{width:100%;padding:12px 13px;border:1px solid #d0d5dd;border-radius:11px;font-size:16px;background:#fff;color:var(--ink);outline:none}input:focus,select:focus{border-color:#84adff;box-shadow:0 0 0 3px #dbe8ff}.full{grid-column:1/-1}
+.result{background:linear-gradient(135deg,#0b1220,#182230);color:#fff;border-radius:16px;padding:20px;margin-top:16px}.result .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.65}
+.price{font-size:38px;font-weight:850;letter-spacing:-.03em;margin:4px 0}.price small{font-size:15px;font-weight:600;opacity:.7}.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.pill{background:rgba(255,255,255,.1);padding:7px 9px;border-radius:9px;font-size:12px}
+.actions{display:flex;gap:9px;margin-top:15px;flex-wrap:wrap}button.primary,button.secondary,button.danger{border:0;border-radius:11px;padding:12px 14px;font-weight:800;cursor:pointer}
+button.primary{background:#fff;color:#0b1220}button.secondary{background:#eef2f6;color:#101828}button.danger{background:#fee4e2;color:#b42318}
+.benefits{display:grid;gap:9px}.benefit{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.benefit:last-child{border-bottom:0}.benefit b{text-align:right}
+.note{font-size:11px;line-height:1.5;color:var(--muted);margin-top:12px}.hidden{display:none!important}.rate-table{width:100%;border-collapse:collapse;font-size:12px}
+.rate-table th,.rate-table td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right}.rate-table th:first-child,.rate-table td:first-child{text-align:left}
+.rate-table input{padding:6px;font-size:12px;border-radius:7px;text-align:right;min-width:70px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.small{font-size:12px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#101828;color:#fff;padding:10px 14px;border-radius:10px;font-size:13px;display:none;z-index:10}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.price{font-size:34px}main{padding:12px}}
+@media print{header,.tabs,.actions,#quoteForm,#adminPanel,.note{display:none!important}body{background:#fff}main{padding:0}.card{box-shadow:none;border:0}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="brand">Quick Quote</div><h1>Medical Card</h1><p class="sub">Fast indicative contribution calculator</p>
+<div class="tabs"><button class="tab active" id="tabQuote" onclick="showTab('quote')">Quick Quote</button><button class="tab" id="tabAdmin" onclick="showTab('admin')">Rate Management</button></div></div></header>
+<main class="wrap">
+<section id="quotePanel">
+<div class="card" id="quoteForm"><p class="section-title">Prospect Details</p>
+<div class="grid">
+<div class="field full"><label>NAME</label><input id="name" placeholder="Prospect name"></div>
+<div class="field"><label>DATE OF BIRTH</label><input id="dob" type="date"></div>
+<div class="field"><label>GENDER</label><select id="gender"><option value="male">Male</option><option value="female">Female</option></select></div>
+<div class="field full"><label>SMOKING STATUS</label><select id="smoker"><option value="ns">Non-Smoker</option><option value="s">Smoker</option></select></div>
+</div>
+<div id="result" class="result hidden"><div class="eyebrow">Estimated Monthly Contribution</div><div class="price" id="price">RM 0 <small>/ month</small></div>
+<div class="meta"><span class="pill" id="agePill">Age —</span><span class="pill" id="profilePill">—</span><span class="pill">Medical Card</span></div>
+<div class="actions"><button class="primary" onclick="copyQuote()">Copy Quote</button><button class="primary" onclick="window.print()">Print / PDF</button><button class="secondary" onclick="resetQuote()">New Quote</button></div></div>
+</div>
+<div class="card"><p class="section-title">Plan Benefits</p><div class="benefits">
+<div class="benefit"><span>Medical Treatment Benefits</span><b>RM200,000 annually<br>Unlimited Lifetime</b></div>
+<div class="benefit"><span>Hospital Daily Room & Board</span><b>RM200 / day</b></div>
+<div class="benefit"><span>Heart Attack, Cancer & Kidney Benefits</span><b>RM1,000,000</b></div>
+<div class="benefit"><span>Heart Attack, Cancer & Kidney Treatment Allowance</span><b>RM100 / day</b></div>
+<div class="benefit"><span>Death Benefit</span><b>RM10,000</b></div>
+<div class="benefit"><span>Extended Care Benefits</span><b>Vaccination reimbursement<br>+ RM100/day hospital allowance</b></div>
+<div class="benefit"><span>Outpatient Treatment Coverage</span><b>Pre/Post Hospitalisation, Day Care/Surgery, Ambulance, Chemotherapy, Radiotherapy, Physiotherapy, etc.</b></div>
+</div><p class="note">Indicative contribution only. Final contribution is subject to eligibility, underwriting, certificate terms and conditions, and the applicable official quotation.</p></div>
+</section>
+<section id="adminPanel" class="hidden"><div class="card"><p class="section-title">Rate Management</p>
+<p class="small">Edit rates here when pricing changes. Changes are saved locally on this device and used immediately by Quick Quote.</p>
+<div class="toolbar"><button class="secondary" onclick="exportRates()">Export Rates</button><button class="secondary" onclick="document.getElementById('importFile').click()">Import Rates</button><button class="danger" onclick="resetRates()">Reset to Original Excel Rates</button><input id="importFile" type="file" accept=".json" class="hidden" onchange="importRates(event)"></div>
+<div style="overflow:auto"><table class="rate-table"><thead><tr><th>Age</th><th>Male NS</th><th>Male S</th><th>Female NS</th><th>Female S</th></tr></thead><tbody id="rateBody"></tbody></table></div>
+</div></section>
+</main><div id="toast" class="toast"></div>
+<script>
+const ORIGINAL_RATES=[{"age":1,"maleNS":219.0,"maleS":219.0,"femaleNS":219.0,"femaleS":219.0},{"age":2,"maleNS":200.0,"maleS":200.0,"femaleNS":200.0,"femaleS":200.0},{"age":3,"maleNS":189.0,"maleS":189.0,"femaleNS":189.0,"femaleS":189.0},{"age":4,"maleNS":179.0,"maleS":179.0,"femaleNS":179.0,"femaleS":179.0},{"age":5,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":6,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":7,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":8,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":9,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":10,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":11,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":12,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":13,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":14,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":15,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":16,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":17,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":18,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":19,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":20,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":21,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":22,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":23,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":24,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":25,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":26,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":27,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":28,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":29,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":30,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":31,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":32,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":33,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":34,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":35,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":36,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":37,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":38,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":39,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":40,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":41,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":42,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":43,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":44,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":45,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":46,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":47,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":48,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":49,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":50,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":51,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":52,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":53,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":54,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":55,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":56,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":57,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":58,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":59,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":60,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0}];
+const STORAGE_KEY="quick_quote_medical_rates_v1";
+function getRates(){try{const x=JSON.parse(localStorage.getItem(STORAGE_KEY));if(Array.isArray(x)&&x.length)return x}catch(e){}return ORIGINAL_RATES.map(x=>({...x}))}
+function saveRates(rates){localStorage.setItem(STORAGE_KEY,JSON.stringify(rates))}
+function money(n){return "RM "+Number(n).toLocaleString("en-MY",{minimumFractionDigits:0,maximumFractionDigits:2})}
+function calcAge(dob){const b=new Date(dob+"T00:00:00"),t=new Date();let age=t.getFullYear()-b.getFullYear(),m=t.getMonth()-b.getMonth();if(m<0||(m===0&&t.getDate()<b.getDate()))age--;return age}
+function selectedRate(age,gender,smoker){const row=getRates().find(r=>Number(r.age)===Number(age));if(!row)return null;const key=(gender==="male"?"male":"female")+(smoker==="ns"?"NS":"S");return Number(row[key])}
+function updateQuote(){const dob=document.getElementById("dob").value;if(!dob){document.getElementById("result").classList.add("hidden");return}const age=calcAge(dob);if(age<1||age>60){document.getElementById("result").classList.remove("hidden");document.getElementById("price").innerHTML="Rate unavailable";document.getElementById("agePill").textContent="Age "+age;document.getElementById("profilePill").textContent="Available age: 1–60";return}const gender=document.getElementById("gender").value,smoker=document.getElementById("smoker").value,rate=selectedRate(age,gender,smoker);document.getElementById("result").classList.remove("hidden");document.getElementById("price").innerHTML=money(rate)+" <small>/ month</small>";document.getElementById("agePill").textContent="Age "+age;document.getElementById("profilePill").textContent=(gender==="male"?"Male":"Female")+" • "+(smoker==="ns"?"Non-Smoker":"Smoker")}
+["dob","gender","smoker"].forEach(id=>document.getElementById(id).addEventListener("input",updateQuote));
+document.getElementById("dob").addEventListener("change",updateQuote);
+function quoteText(){const name=document.getElementById("name").value.trim()||"Prospect",dob=document.getElementById("dob").value,gender=document.getElementById("gender").value,smoker=document.getElementById("smoker").value,age=calcAge(dob),rate=selectedRate(age,gender,smoker);return `${name}\nMedical Card\nAge: ${age} | ${gender==="male"?"Male":"Female"} | ${smoker==="ns"?"Non-Smoker":"Smoker"}\nEstimated contribution: ${money(rate)} / month\nMedical Treatment: RM200,000 annually (Unlimited Lifetime)\nRoom & Board: RM200/day\nHeart Attack, Cancer & Kidney: RM1,000,000`}
+async function copyQuote(){try{await navigator.clipboard.writeText(quoteText());showToast("Quote copied")}catch(e){showToast("Copy unavailable on this browser")}}
+function resetQuote(){document.getElementById("name").value="";document.getElementById("dob").value="";document.getElementById("gender").value="male";document.getElementById("smoker").value="ns";document.getElementById("result").classList.add("hidden")}
+function showToast(s){const t=document.getElementById("toast");t.textContent=s;t.style.display="block";setTimeout(()=>t.style.display="none",1800)}
+function showTab(which){const q=which==="quote";document.getElementById("quotePanel").classList.toggle("hidden",!q);document.getElementById("adminPanel").classList.toggle("hidden",q);document.getElementById("tabQuote").classList.toggle("active",q);document.getElementById("tabAdmin").classList.toggle("active",!q);if(!q)renderRates()}
+function renderRates(){const body=document.getElementById("rateBody");body.innerHTML="";getRates().forEach((r,i)=>{const tr=document.createElement("tr");tr.innerHTML=`<td>${r.age}</td><td><input type="number" value="${r.maleNS}" onchange="editRate(${i},'maleNS',this.value)"></td><td><input type="number" value="${r.maleS}" onchange="editRate(${i},'maleS',this.value)"></td><td><input type="number" value="${r.femaleNS}" onchange="editRate(${i},'femaleNS',this.value)"></td><td><input type="number" value="${r.femaleS}" onchange="editRate(${i},'femaleS',this.value)"></td>`;body.appendChild(tr)})}
+function editRate(i,key,value){const r=getRates();r[i][key]=Number(value);saveRates(r);updateQuote();showToast("Rate saved")}
+function resetRates(){if(confirm("Reset all rates to the original Excel values?")){saveRates(ORIGINAL_RATES.map(x=>({...x})));renderRates();updateQuote();showToast("Original rates restored")}}
+function exportRates(){const blob=new Blob([JSON.stringify(getRates(),null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="medical-card-rates.json";a.click();URL.revokeObjectURL(a.href)}
+function importRates(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const x=JSON.parse(reader.result);if(!Array.isArray(x)||!x.length||!x[0].age)throw Error();saveRates(x);renderRates();updateQuote();showToast("Rates imported")}catch(err){alert("Invalid rate file.")}};reader.readAsText(file);e.target.value=""}
+renderRates();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js"));
+}
+</script>
+</body></html>
