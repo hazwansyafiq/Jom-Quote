@@ -287,7 +287,7 @@ function generateQuotePdf(){
   const q=quoteData();
   const lines=[
     "JOM QUOTE",
-    "MEDICAL CARD — QUICK QUOTATION",
+    "MEDICAL CARD - QUICK QUOTATION",
     "",
     "PROSPECT DETAILS",
     `Name: ${q.name}`,
@@ -299,13 +299,13 @@ function generateQuotePdf(){
     `ESTIMATED MONTHLY CONTRIBUTION: ${money(q.rate)} / month`,
     "",
     "MEDICAL CARD BENEFITS",
-    "• Medical Treatment: RM200,000 annually (Unlimited Lifetime)",
-    "• Hospital Room & Board: RM200/day",
-    "• Heart Attack, Cancer & Kidney Benefits: RM1,000,000",
-    "• Treatment Allowance: RM100/day",
-    "• Death Benefit: RM10,000",
-    "• Extended Care: Vaccination reimbursement + RM100/day hospital allowance",
-    "• Outpatient: Pre/Post Hospitalisation, Day Care/Surgery, Ambulance,",
+    "- Medical Treatment: RM200,000 annually (Unlimited Lifetime)",
+    "- Hospital Room & Board: RM200/day",
+    "- Heart Attack, Cancer & Kidney Benefits: RM1,000,000",
+    "- Treatment Allowance: RM100/day",
+    "- Death Benefit: RM10,000",
+    "- Extended Care: Vaccination reimbursement + RM100/day hospital allowance",
+    "- Outpatient: Pre/Post Hospitalisation, Day Care/Surgery, Ambulance,",
     "  Chemotherapy, Radiotherapy, Physiotherapy, etc.",
     "",
     "DISCLAIMER",
@@ -316,54 +316,56 @@ function generateQuotePdf(){
   const pageW=595,pageH=842,left=48,top=790,bottom=48,lineH=16;
   const chunks=[]; let current=[]; let y=top;
   for(const line of lines){
-    const h=(line==="JOM QUOTE"||line==="MEDICAL CARD — QUICK QUOTATION"||line.startsWith("ESTIMATED MONTHLY"))?20:lineH;
+    const h=(line==="JOM QUOTE"||line==="MEDICAL CARD - QUICK QUOTATION"||line.startsWith("ESTIMATED MONTHLY"))?20:lineH;
     if(y-h<bottom){chunks.push(current);current=[];y=top;}
-    current.push({line,y,bold:line==="JOM QUOTE"||line==="MEDICAL CARD — QUICK QUOTATION"||line.startsWith("ESTIMATED MONTHLY")||line.endsWith("DETAILS")||line==="MEDICAL CARD BENEFITS"||line==="DISCLAIMER"});
+    current.push({line,y,bold:line==="JOM QUOTE"||line==="MEDICAL CARD - QUICK QUOTATION"||line.startsWith("ESTIMATED MONTHLY")||line.endsWith("DETAILS")||line==="MEDICAL CARD BENEFITS"||line==="DISCLAIMER"});
     y-=h;
   }
   if(current.length)chunks.push(current);
 
-  const objects=[];
-  objects.push(`<< /Type /Catalog /Pages 2 0 R >>`);
+  // Reserve fixed object numbers: Catalog=1, Pages=2, Fonts=3/4.
+  // Page/content objects are added after those so every PDF reference is valid.
+  const objects=[
+    `<< /Type /Catalog /Pages 2 0 R >>`,
+    ``,
+    `<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>`,
+    `<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>`
+  ];
   const pageNums=[];
-  const fontRegular=3,fontBold=4;
-  chunks.forEach((page,idx)=>{
+  chunks.forEach(page=>{
     const content=[];
     content.push("BT");
     page.forEach(item=>{
-      const size=item.bold?(item.line.startsWith("ESTIMATED")?16: item.line==="JOM QUOTE"?18:13):10;
-      const font=item.bold?fontBold:fontRegular;
-      content.push(`/F${font===fontBold?"B":"R"} ${size} Tf`);
+      const size=item.bold?(item.line.startsWith("ESTIMATED")?16:item.line==="JOM QUOTE"?18:13):10;
+      content.push(`/${item.bold?"FB":"FR"} ${size} Tf`);
       content.push(`1 0 0 1 ${left} ${item.y} Tm`);
       content.push(`(${pdfEscape(item.line)}) Tj`);
     });
     content.push("ET");
     const stream=content.join("\n");
     const contentObj=objects.length+1;
-    objects.push(`<< /Length ${stream.length} >>\nstream\n${stream}\nendstream`);
+    objects.push(`<< /Length ${new TextEncoder().encode(stream).length} >>\nstream\n${stream}\nendstream`);
     const pageObj=objects.length+1;
-    objects.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageW} ${pageH}] /Resources << /Font << /FR ${fontRegular} 0 R /FB ${fontBold} 0 R >> >> /Contents ${contentObj} 0 R >>`);
+    objects.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageW} ${pageH}] /Resources << /Font << /FR 3 0 R /FB 4 0 R >> >> /Contents ${contentObj} 0 R >>`);
     pageNums.push(pageObj);
   });
-  const pagesObj=objects.length+1;
   objects[1]=`<< /Type /Pages /Kids [${pageNums.map(n=>n+" 0 R").join(" ")}] /Count ${pageNums.length} >>`;
-  objects.push(`<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>`);
-  objects.push(`<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>`);
 
   let pdf="%PDF-1.4\n"; const offsets=[0];
   for(let i=0;i<objects.length;i++){
-    offsets[i+1]=pdf.length;
+    offsets[i+1]=new TextEncoder().encode(pdf).length;
     pdf+=`${i+1} 0 obj\n${objects[i]}\nendobj\n`;
   }
-  const xref=pdf.length;
+  const xref=new TextEncoder().encode(pdf).length;
   pdf+=`xref\n0 ${objects.length+1}\n0000000000 65535 f \n`;
   for(let i=1;i<offsets.length;i++)pdf+=String(offsets[i]).padStart(10,"0")+" 00000 n \n";
   pdf+=`trailer\n<< /Size ${objects.length+1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`;
   const blob=new Blob([pdf],{type:"application/pdf"});
   const a=document.createElement("a");
   const safeName=(q.name||"Prospect").replace(/[^a-z0-9_-]+/gi,"_").replace(/^_+|_+$/g,"")||"Prospect";
-  a.href=URL.createObjectURL(blob);a.download=`Jom-Quote-${safeName}.pdf`;document.body.appendChild(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  const url=URL.createObjectURL(blob);
+  a.href=url;a.download=`Jom-Quote-${safeName}.pdf`;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 function populatePrintQuote(){
   const q=quoteData();
