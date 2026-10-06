@@ -33,7 +33,10 @@ main{padding:22px 18px 40px}.card{background:rgba(255,255,255,.96);border:1px so
 .topbar{display:flex;align-items:center;gap:12px;margin:0 0 13px;padding:0 2px}.topbar div{display:flex;flex-direction:column;gap:2px}.topbar div span{font-size:11px;color:#667085}.back{border:1px solid #dce4ed;background:#fff;border-radius:11px;padding:9px 11px;font-weight:900;cursor:pointer;box-shadow:0 4px 10px rgba(7,27,58,.04)}
 .quote-card{padding:21px}.form-head{display:flex;align-items:center;gap:11px;margin-bottom:15px}.form-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#fff0f2,#e9f9fb);border:1px solid #f1dfe2;font-size:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:flex;flex-direction:column;gap:7px}.full{grid-column:1/-1}label{font-size:11px;font-weight:900;color:#52627a;letter-spacing:.04em}input,select{width:100%;padding:13px 14px;border:1px solid #cfd9e4;border-radius:12px;font-size:16px;background:#fff;color:var(--ink);outline:none;transition:.15s}input:focus,select:focus{border-color:#0b8bb0;box-shadow:0 0 0 4px rgba(16,183,189,.12)}
 .result{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy) 0%,#0b315d 60%,#087d93 100%);color:#fff;border-radius:18px;padding:21px;margin-top:17px;box-shadow:0 14px 28px rgba(7,27,58,.2)}.result:after{content:"♡";position:absolute;right:18px;top:12px;font-size:84px;line-height:1;color:rgba(255,255,255,.08);font-weight:300}.result>*{position:relative;z-index:1}.result .eyebrow{color:#cfe1ef}.price{font-size:42px;font-weight:950;letter-spacing:-.04em;margin:4px 0}.price small{font-size:14px;font-weight:700;opacity:.72}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.1);padding:7px 9px;border-radius:999px;font-size:11px;font-weight:800}.actions{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}button.primary,button.secondary,button.danger{border:0;border-radius:12px;padding:12px 14px;font-weight:900;cursor:pointer}button.primary{background:linear-gradient(135deg,#fff,#eef6fb);color:var(--navy)}button.primary:first-child{background:linear-gradient(135deg,var(--red),#ff4052);color:#fff}button.secondary{background:#eef2f6;color:#101828}button.danger{background:#fee4e2;color:#b42318}
-.benefits{display:grid;gap:0}.benefit{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}.benefit:last-child{border-bottom:0}.benefit b{text-align:right;color:#1b3659}.note{font-size:11px;line-height:1.55;color:var(--muted);margin-top:13px}.hidden{display:none!important}
+.benefits{display:grid;gap:0}
+.medical-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:18px;align-items:start}
+.medical-layout>.card{margin:0}
+@media(max-width:900px){.medical-layout{grid-template-columns:1fr}}.benefit{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}.benefit:last-child{border-bottom:0}.benefit b{text-align:right;color:#1b3659}.note{font-size:11px;line-height:1.55;color:var(--muted);margin-top:13px}.hidden{display:none!important}
 .rate-table{width:100%;border-collapse:collapse;font-size:12px}.rate-table th,.rate-table td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right}.rate-table th:first-child,.rate-table td:first-child{text-align:left}.rate-table input{padding:6px;font-size:12px;border-radius:7px;text-align:right;min-width:70px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 15px;border-radius:999px;font-size:13px;display:none;z-index:10;box-shadow:0 10px 24px rgba(7,27,58,.25)}
 @media(max-width:760px){.product-grid{grid-template-columns:1fr}.wrap{max-width:100%}.hero h2{font-size:27px}}
 @media(max-width:560px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.price{font-size:36px}main{padding:14px 12px 30px}.header-inner{align-items:flex-start}.logo{width:50px;height:50px}.brand-title{font-size:23px}.card{border-radius:18px;padding:17px}.hero{padding:23px 18px}.feature-row{display:grid;grid-template-columns:1fr 1fr}.feature{font-size:11px}.actions button{flex:1}.result{padding:18px}}
@@ -104,6 +107,7 @@ main{padding:22px 18px 40px}.card{background:rgba(255,255,255,.96);border:1px so
     <div><b>Medical Card</b><span>Quick Quote</span></div>
   </div>
 
+  <div class="medical-layout">
   <div class="card quote-card" id="quoteForm">
     <div class="form-head">
       <div class="form-icon">🛡️</div>
@@ -144,6 +148,7 @@ main{padding:22px 18px 40px}.card{background:rgba(255,255,255,.96);border:1px so
       <div class="benefit"><span>Outpatient Treatment Coverage</span><b>Pre/Post Hospitalisation, Day Care/Surgery, Ambulance, Chemotherapy, Radiotherapy, Physiotherapy, etc.</b></div>
     </div>
     <p class="note">Indicative contribution only. Final contribution is subject to eligibility, underwriting, certificate terms and conditions, and the applicable official quotation.</p>
+  </div>
   </div>
 </section>
 

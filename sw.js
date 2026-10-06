@@ -1,4 +1,4 @@
-const CACHE = "quick-quote-v7";
+const CACHE = "quick-quote-v8";
 const ASSETS = ["./", "./index.html", "./manifest.json", "./icon-192.png", "./icon-512.png", "./mg-logo.png"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
