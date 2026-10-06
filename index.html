@@ -26,7 +26,26 @@ button.primary{background:#fff;color:#0b1220}button.secondary{background:#eef2f6
 .rate-table input{padding:6px;font-size:12px;border-radius:7px;text-align:right;min-width:70px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.small{font-size:12px;color:var(--muted)}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#101828;color:#fff;padding:10px 14px;border-radius:10px;font-size:13px;display:none;z-index:10}
 @media(max-width:560px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.price{font-size:34px}main{padding:12px}}
-@media print{header,.tabs,.actions,#quoteForm,#adminPanel,.note{display:none!important}body{background:#fff}main{padding:0}.card{box-shadow:none;border:0}}
+@media print{
+  header,.tabs,#homePanel,#medicalPanel,#adminPanel{display:none!important}
+  body{background:#fff}
+  main{padding:0;max-width:none}
+  #printQuote{display:block!important}
+  .print-wrap{padding:36px 44px;font-family:Arial,sans-serif;color:#101828}
+  .print-brand{font-size:12px;letter-spacing:.16em;font-weight:800;color:#667085}
+  .print-title{font-size:25px;font-weight:800;margin:6px 0 4px}
+  .print-sub{font-size:12px;color:#667085;margin-bottom:26px}
+  .print-section{font-size:12px;font-weight:800;letter-spacing:.08em;margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid #d0d5dd}
+  .print-details{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;font-size:13px}
+  .print-details div{padding:7px 0;border-bottom:1px solid #eaecf0}
+  .print-details b{display:block;font-size:10px;color:#667085;text-transform:uppercase;margin-bottom:3px}
+  .print-price{font-size:25px;font-weight:800;margin:10px 0 4px}
+  .print-benefits{display:grid;gap:7px;font-size:12px}
+  .print-benefit{display:flex;justify-content:space-between;gap:20px;padding:6px 0;border-bottom:1px solid #eaecf0}
+  .print-benefit b{text-align:right}
+  .print-note{font-size:10px;line-height:1.5;color:#667085;margin-top:24px}
+}
+#printQuote{display:none}
 
 .hero h2{margin:5px 0 4px;font-size:25px}
 .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;opacity:.65}
@@ -105,7 +124,7 @@ button.primary{background:#fff;color:#0b1220}button.secondary{background:#eef2f6
       </div>
       <div class="actions">
         <button class="primary" onclick="copyQuote()">Copy Quote</button>
-        <button class="primary" onclick="window.print()">Print / PDF</button>
+        <button class="primary" onclick="printQuote()">Print / PDF</button>
         <button class="secondary" onclick="resetQuote()">New Quote</button>
       </div>
     </div>
@@ -123,6 +142,38 @@ button.primary{background:#fff;color:#0b1220}button.secondary{background:#eef2f6
       <div class="benefit"><span>Outpatient Treatment Coverage</span><b>Pre/Post Hospitalisation, Day Care/Surgery, Ambulance, Chemotherapy, Radiotherapy, Physiotherapy, etc.</b></div>
     </div>
     <p class="note">Indicative contribution only. Final contribution is subject to eligibility, underwriting, certificate terms and conditions, and the applicable official quotation.</p>
+  </div>
+</section>
+
+<section id="printQuote">
+  <div class="print-wrap">
+    <div class="print-brand">JOM QUOTE</div>
+    <div class="print-title">Medical Card — Quick Quotation</div>
+    <div class="print-sub">Indicative contribution estimate</div>
+
+    <div class="print-section">PROSPECT DETAILS</div>
+    <div class="print-details">
+      <div><b>Name</b><span id="printName">—</span></div>
+      <div><b>Age</b><span id="printAge">—</span></div>
+      <div><b>Date of Birth</b><span id="printDob">—</span></div>
+      <div><b>Gender</b><span id="printGender">—</span></div>
+      <div><b>Smoking Status</b><span id="printSmoker">—</span></div>
+    </div>
+
+    <div class="print-section">ESTIMATED MONTHLY CONTRIBUTION</div>
+    <div class="print-price" id="printPrice">—</div>
+
+    <div class="print-section">MEDICAL CARD BENEFITS</div>
+    <div class="print-benefits">
+      <div class="print-benefit"><span>Medical Treatment Benefits</span><b>RM200,000 annually<br>Unlimited Lifetime</b></div>
+      <div class="print-benefit"><span>Hospital Daily Room &amp; Board</span><b>RM200 / day</b></div>
+      <div class="print-benefit"><span>Heart Attack, Cancer &amp; Kidney Benefits</span><b>RM1,000,000</b></div>
+      <div class="print-benefit"><span>Heart Attack, Cancer &amp; Kidney Treatment Allowance</span><b>RM100 / day</b></div>
+      <div class="print-benefit"><span>Death Benefit</span><b>RM10,000</b></div>
+      <div class="print-benefit"><span>Extended Care Benefits</span><b>Vaccination reimbursement<br>+ RM100/day hospital allowance</b></div>
+      <div class="print-benefit"><span>Outpatient Treatment Coverage</span><b>Pre/Post Hospitalisation, Day Care/Surgery, Ambulance, Chemotherapy, Radiotherapy, Physiotherapy, etc.</b></div>
+    </div>
+    <div class="print-note">Indicative quotation only. Final contribution is subject to eligibility, underwriting, certificate terms and conditions, and the applicable official quotation.</div>
   </div>
 </section>
 
@@ -305,6 +356,19 @@ function generateQuotePdf(){
   const safeName=(q.name||"Prospect").replace(/[^a-z0-9_-]+/gi,"_").replace(/^_+|_+$/g,"")||"Prospect";
   a.href=URL.createObjectURL(blob);a.download=`Jom-Quote-${safeName}.pdf`;document.body.appendChild(a);a.click();a.remove();
   setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function populatePrintQuote(){
+  const q=quoteData();
+  document.getElementById("printName").textContent=q.name;
+  document.getElementById("printAge").textContent=Number.isFinite(q.age)?q.age:"—";
+  document.getElementById("printDob").textContent=formatDob(q.dob);
+  document.getElementById("printGender").textContent=q.gender;
+  document.getElementById("printSmoker").textContent=q.smoker;
+  document.getElementById("printPrice").textContent=q.rate==null?"Rate unavailable":money(q.rate)+" / month";
+}
+function printQuote(){
+  populatePrintQuote();
+  window.print();
 }
 async function copyQuote(){
   try{await navigator.clipboard.writeText(quoteText());generateQuotePdf();showToast("Quote copied + PDF generated")}catch(e){generateQuotePdf();showToast("PDF generated; copy unavailable")}
