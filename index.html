@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0b1220">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
-<title>Quick Quote — Medical Card</title>
+<title>JOM QUOTE — Takaful Quick Quote</title>
 <style>
 :root{
   --navy:#071b3a;--navy2:#0b315d;--blue:#0879bd;--teal:#10b7bd;--red:#ed1b2f;--red2:#ff3045;
@@ -29,13 +29,13 @@ main{padding:22px 18px 40px}.card{background:rgba(255,255,255,.96);border:1px so
 .hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#fff 0%,#f8fbfd 55%,#e7f7f8 100%);padding:28px 24px}.hero:after{content:"";position:absolute;width:230px;height:230px;right:-80px;bottom:-105px;border-radius:50%;background:linear-gradient(135deg,rgba(237,27,47,.9),rgba(16,183,189,.75));opacity:.9}.hero-content{position:relative;z-index:1;max-width:620px}.hero-kicker{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;background:#eef7fb;color:#0879bd;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.hero h2{margin:11px 0 6px;font-size:30px;letter-spacing:-.035em;line-height:1.05}.hero h2 span{color:var(--red)}.hero .small{font-size:14px;max-width:580px}
 .feature-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}.feature{display:flex;align-items:center;gap:8px;padding:9px 11px;border-radius:12px;background:#fff;border:1px solid #e8edf3;font-size:12px;font-weight:800;box-shadow:0 4px 12px rgba(7,27,58,.05)}.feature i{font-style:normal;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--red),#ff5363);color:#fff}
 .section-title{font-size:15px;font-weight:900;margin:0 0 14px}.eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;font-weight:900;color:#77869a}.small{font-size:12px;color:var(--muted)}
-.product-grid{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:12px}.product-card{position:relative;overflow:hidden;display:grid;grid-template-columns:45px 1fr 22px;align-items:center;text-align:left;gap:11px;width:100%;min-height:92px;padding:15px;border:1px solid #dfe7ef;background:linear-gradient(135deg,#fff,#f9fbfd);border-radius:17px;cursor:pointer;transition:.18s ease}.product-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--red),var(--teal));opacity:0}.product-card:hover{transform:translateY(-2px);border-color:#b9c9d8;box-shadow:0 10px 24px rgba(7,27,58,.09)}.product-card:hover:before{opacity:1}.product-card b{display:block;font-size:15px}.product-card span{display:block;color:#667085;font-size:12px;margin-top:3px}.product-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:23px;background:linear-gradient(135deg,#eef8ff,#e9fbfb);border:1px solid #d8edf2}.product-card.disabled{opacity:.46;cursor:not-allowed;transform:none}.product-card.disabled:before{display:none}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.product-card{position:relative;overflow:hidden;display:grid;grid-template-columns:45px 1fr 22px;align-items:center;text-align:left;gap:11px;width:100%;min-height:92px;padding:15px;border:1px solid #dfe7ef;background:linear-gradient(135deg,#fff,#f9fbfd);border-radius:17px;cursor:pointer;transition:.18s ease}.product-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--red),var(--teal));opacity:0}.product-card:hover{transform:translateY(-2px);border-color:#b9c9d8;box-shadow:0 10px 24px rgba(7,27,58,.09)}.product-card:hover:before{opacity:1}.product-card b{display:block;font-size:15px}.product-card span{display:block;color:#667085;font-size:12px;margin-top:3px}.product-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:23px;background:linear-gradient(135deg,#eef8ff,#e9fbfb);border:1px solid #d8edf2}.product-card.disabled{opacity:.46;cursor:not-allowed;transform:none}.product-card.disabled:before{display:none}
 .topbar{display:flex;align-items:center;gap:12px;margin:0 0 13px;padding:0 2px}.topbar div{display:flex;flex-direction:column;gap:2px}.topbar div span{font-size:11px;color:#667085}.back{border:1px solid #dce4ed;background:#fff;border-radius:11px;padding:9px 11px;font-weight:900;cursor:pointer;box-shadow:0 4px 10px rgba(7,27,58,.04)}
 .quote-card{padding:21px}.form-head{display:flex;align-items:center;gap:11px;margin-bottom:15px}.form-icon{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#fff0f2,#e9f9fb);border:1px solid #f1dfe2;font-size:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:flex;flex-direction:column;gap:7px}.full{grid-column:1/-1}label{font-size:11px;font-weight:900;color:#52627a;letter-spacing:.04em}input,select{width:100%;padding:13px 14px;border:1px solid #cfd9e4;border-radius:12px;font-size:16px;background:#fff;color:var(--ink);outline:none;transition:.15s}input:focus,select:focus{border-color:#0b8bb0;box-shadow:0 0 0 4px rgba(16,183,189,.12)}
 .result{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy) 0%,#0b315d 60%,#087d93 100%);color:#fff;border-radius:18px;padding:21px;margin-top:17px;box-shadow:0 14px 28px rgba(7,27,58,.2)}.result:after{content:"♡";position:absolute;right:18px;top:12px;font-size:84px;line-height:1;color:rgba(255,255,255,.08);font-weight:300}.result>*{position:relative;z-index:1}.result .eyebrow{color:#cfe1ef}.price{font-size:42px;font-weight:950;letter-spacing:-.04em;margin:4px 0}.price small{font-size:14px;font-weight:700;opacity:.72}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}.pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.1);padding:7px 9px;border-radius:999px;font-size:11px;font-weight:800}.actions{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}button.primary,button.secondary,button.danger{border:0;border-radius:12px;padding:12px 14px;font-weight:900;cursor:pointer}button.primary{background:linear-gradient(135deg,#fff,#eef6fb);color:var(--navy)}button.primary:first-child{background:linear-gradient(135deg,var(--red),#ff4052);color:#fff}button.secondary{background:#eef2f6;color:#101828}button.danger{background:#fee4e2;color:#b42318}
 .benefits{display:grid;gap:0}
 .medical-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:18px;align-items:start}
-.medical-layout>.card{margin:0}
+.medical-layout>.card{margin:0}.ladies-summary-card h3{font-size:23px;color:var(--navy);margin:8px 0}.summary-kicker{font-size:10px;font-weight:800;letter-spacing:1.4px;color:var(--red);margin-top:18px}.summary-amount{font-size:28px;font-weight:850;letter-spacing:-.6px;color:var(--navy);margin:8px 0}.summary-lead{font-size:14px;color:var(--muted);margin:0 0 14px}.summary-list{padding-left:20px;margin:12px 0 18px;color:var(--ink);font-size:13px;line-height:1.7}.summary-list li{padding-left:3px;margin-bottom:5px}.ladies-plan-summary{border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px;background:linear-gradient(145deg,#fff,#f8fafc)}.plan-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.plan-option{border:1px solid var(--line);background:#fff;border-radius:15px;padding:14px;text-align:left;cursor:pointer}.plan-option.selected{border:2px solid var(--red);background:#fff5f6;box-shadow:0 5px 15px rgba(237,27,47,.08)}.plan-option b{display:block;font-size:15px;color:var(--navy)}.plan-option span{display:block;font-size:12px;color:var(--muted);margin-top:4px;line-height:1.4}
 @media(max-width:900px){.medical-layout{grid-template-columns:1fr}}.benefit{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}.benefit:last-child{border-bottom:0}.benefit b{text-align:right;color:#1b3659}.note{font-size:11px;line-height:1.55;color:var(--muted);margin-top:13px}.hidden{display:none!important}
 .rate-table{width:100%;border-collapse:collapse;font-size:12px}.rate-table th,.rate-table td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right}.rate-table th:first-child,.rate-table td:first-child{text-align:left}.rate-table input{padding:6px;font-size:12px;border-radius:7px;text-align:right;min-width:70px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 15px;border-radius:999px;font-size:13px;display:none;z-index:10;box-shadow:0 10px 24px rgba(7,27,58,.25)}
 @media(max-width:760px){.product-grid{grid-template-columns:1fr}.wrap{max-width:100%}.hero h2{font-size:27px}}
@@ -85,6 +85,11 @@ main{padding:22px 18px 40px}.card{background:rgba(255,255,255,.96);border:1px so
       <button class="product-card" onclick="openProduct('medical')">
         <div class="product-icon">🏥</div>
         <div><b>Medical Card</b><span>Instant contribution estimate</span></div>
+        <strong>→</strong>
+      </button>
+      <button class="product-card" onclick="openProduct('ladies')">
+        <div class="product-icon">🌷</div>
+        <div><b>Ladies Protection</b><span>Women's protection • Quick quote</span></div>
         <strong>→</strong>
       </button>
       <button class="product-card disabled" disabled>
@@ -152,6 +157,63 @@ main{padding:22px 18px 40px}.card{background:rgba(255,255,255,.96);border:1px so
   </div>
 </section>
 
+<section id="ladiesPanel" class="hidden">
+  <div class="topbar"><button class="back" onclick="showHome()">← Products</button><div><b>Ladies Protection</b><span>Quick Quote</span></div></div>
+  <div class="medical-layout">
+    <div class="card quote-card">
+      <div class="form-head"><div class="form-icon">🌷</div><div><p class="section-title" style="margin:0 0 3px">Prospect Details</p><div class="small">Enter the prospect's details and select a plan.</div></div></div>
+      <div class="grid">
+        <div class="field full"><label>NAME</label><input id="ladiesName" placeholder="Prospect name"></div>
+        <div class="field full"><label>DATE OF BIRTH</label><input id="ladiesDob" type="date"></div>
+      </div>
+      <p class="section-title" style="margin:18px 0 8px">Select Plan</p>
+      <div class="plan-options">
+        <button type="button" id="ladiesPlanA" class="plan-option selected" onclick="selectLadiesPlan('A')"><b>Plan A</b><span>RM50,000 protection</span></button>
+        <button type="button" id="ladiesPlanB" class="plan-option" onclick="selectLadiesPlan('B')"><b>Plan B</b><span>RM50,000 protection + MomCare benefit</span></button>
+      </div>
+      <div id="ladiesResult" class="result hidden"><div class="eyebrow">Estimated Monthly Contribution</div><div class="price" id="ladiesPrice">RM 0 <small>/ month</small></div><div class="meta"><span class="pill" id="ladiesAgePill">Age —</span><span class="pill" id="ladiesPlanPill">Plan A</span><span class="pill">Ladies Protection</span></div><div class="actions"><button class="primary" onclick="copyLadiesQuote()">Copy Quote</button><button class="primary" onclick="printLadiesQuote()">Print / PDF</button><button class="secondary" onclick="resetLadiesQuote()">New Quote</button></div></div>
+    </div>
+    <div class="card ladies-summary-card">
+      <div class="form-head"><div class="form-icon">🛡️</div><div><p class="section-title" style="margin:0 0 3px">Selected Plan Summary</p><div class="small">Plan explanation updates when you switch Plan A or Plan B.</div></div></div>
+      <div id="ladiesSummaryA" class="ladies-plan-summary">
+        <div class="summary-kicker">LADIES PROTECTION</div>
+        <h3>Plan A</h3>
+        <div class="summary-amount">RM50,000</div>
+        <p class="summary-lead">RM50,000 Basic Sum Covered</p>
+        <ul class="summary-list">
+          <li><b>Death Benefit</b> — RM50,000 plus certificate cash value, if any, subject to terms.</li>
+          <li><b>Total and Permanent Disability (TPD)</b> — benefit subject to the certificate terms and coverage period.</li>
+          <li><b>Female Illness Benefit</b> — includes specified female cancers and serious kidney complications associated with SLE.</li>
+          <li><b>Female Carcinoma-In-Situ Benefit</b></li>
+          <li><b>Female Care Benefit</b> — for specified covered conditions.</li>
+          <li><b>Mental Care Benefit</b> — eligible reimbursement subject to product limits.</li>
+          <li><b>Life Stage Benefit</b> — eligible life events include marriage, buying a property, Hajj or Umrah, postgraduate studies (Master’s or PhD), childbirth or legal adoption, spouse’s death and retirement.</li>
+          <li><b>Maturity Benefit</b> — certificate cash value, if any, subject to terms.</li>
+        </ul>
+      </div>
+      <div id="ladiesSummaryB" class="ladies-plan-summary hidden">
+        <div class="summary-kicker">LADIES PROTECTION + MOMCARE</div>
+        <h3>Plan B</h3>
+        <div class="summary-amount">RM50,000</div>
+        <p class="summary-lead">RM25,000 Basic Sum Covered + RM25,000 MomCare Sum Covered</p>
+        <ul class="summary-list">
+          <li><b>Basic Ladies Protection</b> — includes the Plan A benefit categories, with benefit percentages based on the RM25,000 Basic Sum Covered and subject to certificate terms.</li>
+          <li><b>Female Illness Benefit</b></li>
+          <li><b>Female Carcinoma-In-Situ Benefit</b></li>
+          <li><b>Female Care Benefit</b></li>
+          <li><b>Mental Care Benefit</b></li>
+          <li><b>Life Stage Benefit</b> — eligible life events include marriage, buying a property, Hajj or Umrah, postgraduate studies (Master’s or PhD), childbirth or legal adoption, spouse’s death and retirement.</li>
+          <li><b>MomCare — Pregnancy Care</b> — selected pregnancy and childbirth-related complications, subject to terms.</li>
+          <li><b>MomCare — Fertility Care</b> — eligible fertility treatments such as IUI or IVF, subject to limits and terms.</li>
+          <li><b>MomCare — Baby Care</b> — selected covered conditions affecting a baby, subject to terms.</li>
+        </ul>
+      </div>
+      <p class="note">This is a simplified summary. All benefits are subject to the official certificate wording, exclusions, eligibility criteria and claim conditions.</p>
+      <p class="small">Rates can be updated in Rate Management. Plan A and Plan B rates are stored separately from Medical Card.</p>
+    </div>
+  </div>
+</section>
+
 <section id="printQuote">
   <div class="print-wrap">
     <div class="print-brand">MG MUQMEEN GROUP • JOM QUOTE</div>
@@ -193,25 +255,21 @@ main{padding:22px 18px 40px}.card{background:rgba(255,255,255,.96);border:1px so
     <p class="section-title">Product</p>
     <select id="adminProduct" onchange="renderRates()">
       <option value="medical">Medical Card</option>
+      <option value="ladies">Ladies Protection</option>
       <option value="life" disabled>Life Protection — Coming Soon</option>
       <option value="ci" disabled>Critical Illness — Coming Soon</option>
     </select>
   </div>
-  <div class="card">
-    <p class="section-title">Medical Card Rate Table</p>
-    <p class="small">Edit rates here when pricing changes. Changes are saved on this device and used immediately by Quick Quote.</p>
-    <div class="toolbar">
-      <button class="secondary" onclick="exportRates()">Export Rates</button>
-      <button class="secondary" onclick="document.getElementById('importFile').click()">Import Rates</button>
-      <button class="danger" onclick="resetRates()">Reset Original Rates</button>
-      <input id="importFile" type="file" accept=".json" class="hidden" onchange="importRates(event)">
-    </div>
-    <div style="overflow:auto">
-      <table class="rate-table">
-        <thead><tr><th>Age</th><th>Male NS</th><th>Male S</th><th>Female NS</th><th>Female S</th></tr></thead>
-        <tbody id="rateBody"></tbody>
-      </table>
-    </div>
+  <div class="card" id="medicalRatesCard">
+    <p class="section-title">Medical Card Rate Table</p><p class="small">Edit rates here when pricing changes. Changes are saved on this device and used immediately by Medical Card Quick Quote.</p>
+    <div class="toolbar"><button class="secondary" onclick="exportRates()">Export Rates</button><button class="secondary" onclick="document.getElementById('importFile').click()">Import Rates</button><button class="danger" onclick="resetRates()">Reset Original Rates</button><input id="importFile" type="file" accept=".json" class="hidden" onchange="importRates(event)"></div>
+    <div style="overflow:auto"><table class="rate-table"><thead><tr><th>Age</th><th>Male NS</th><th>Male S</th><th>Female NS</th><th>Female S</th></tr></thead><tbody id="rateBody"></tbody></table></div>
+  </div>
+  <div class="card hidden" id="ladiesRatesCard">
+    <p class="section-title">Ladies Protection Rate Table</p><p class="small">Edit the monthly contribution for each age. Plan A and Plan B rates are stored separately from Medical Card rates and apply immediately to Ladies Protection quotes on this device. The initial values are provisional.</p>
+    <div class="toolbar"><button class="secondary" onclick="exportLadiesRates()">Export Ladies Rates</button><button class="secondary" onclick="document.getElementById('ladiesImportFile').click()">Import Ladies Rates</button><button class="danger" onclick="resetLadiesRates()">Reset Original Ladies Rates</button><input id="ladiesImportFile" type="file" accept=".json" class="hidden" onchange="importLadiesRates(event)"></div>
+    <div style="overflow:auto"><table class="rate-table"><thead><tr><th>Age</th><th>Plan A (RM/month)</th><th>Plan B (RM/month)</th></tr></thead><tbody id="ladiesRateBody"></tbody></table></div>
+    <p class="small">Rates are saved locally in this browser/device, same as Medical Card. Changes do not automatically update other users' devices.</p>
   </div>
 </section>
 </main><div class="app-footer"><div class="footer-line">Apps designed by <strong>Hazwan Syafiq Haznain</strong> · <strong>MD700069</strong></div></div>
@@ -219,6 +277,8 @@ main{padding:22px 18px 40px}.card{background:rgba(255,255,255,.96);border:1px so
 <script>
 const ORIGINAL_RATES=[{"age":1,"maleNS":219.0,"maleS":219.0,"femaleNS":219.0,"femaleS":219.0},{"age":2,"maleNS":200.0,"maleS":200.0,"femaleNS":200.0,"femaleS":200.0},{"age":3,"maleNS":189.0,"maleS":189.0,"femaleNS":189.0,"femaleS":189.0},{"age":4,"maleNS":179.0,"maleS":179.0,"femaleNS":179.0,"femaleS":179.0},{"age":5,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":6,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":7,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":8,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":9,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":10,"maleNS":159.0,"maleS":159.0,"femaleNS":159.0,"femaleS":159.0},{"age":11,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":12,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":13,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":14,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":15,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":16,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":17,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":18,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":19,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":20,"maleNS":100.0,"maleS":100.0,"femaleNS":100.0,"femaleS":100.0},{"age":21,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":22,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":23,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":24,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":25,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":26,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":27,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":28,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":29,"maleNS":105.0,"maleS":105.0,"femaleNS":105.0,"femaleS":105.0},{"age":30,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":31,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":32,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":33,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":34,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":35,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":36,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":37,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":38,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":39,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":40,"maleNS":115.0,"maleS":115.0,"femaleNS":115.0,"femaleS":115.0},{"age":41,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":42,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":43,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":44,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":45,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":46,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":47,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":48,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":49,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":50,"maleNS":269.0,"maleS":269.0,"femaleNS":269.0,"femaleS":269.0},{"age":51,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":52,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":53,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":54,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":55,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":56,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":57,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":58,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":59,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0},{"age":60,"maleNS":369.0,"maleS":369.0,"femaleNS":369.0,"femaleS":369.0}];
 const STORAGE_KEY="jom_quote_medical_rates_v2";
+const LADIES_STORAGE_KEY="jom_quote_ladies_rates_v1";
+const ORIGINAL_LADIES_RATES=Array.from({length:40},(_,i)=>({age:i+20,planA:100,planB:150}));
 
 function getRates(){
   try{const x=JSON.parse(localStorage.getItem(STORAGE_KEY));if(Array.isArray(x)&&x.length)return x}catch(e){}
@@ -245,34 +305,25 @@ function updateQuote(){
   document.getElementById("agePill").textContent="Age "+age;
   document.getElementById("profilePill").textContent=(g==="male"?"Male":"Female")+" • "+(s==="ns"?"Non-Smoker":"Smoker");
 }
-function showHome(){
-  document.getElementById("homePanel").classList.remove("hidden");
-  document.getElementById("medicalPanel").classList.add("hidden");
-  document.getElementById("adminPanel").classList.add("hidden");
-  document.getElementById("tabHome").classList.add("active");
-  document.getElementById("tabAdmin").classList.remove("active");
-}
-function openProduct(p){
-  if(p==="medical"){
-    document.getElementById("homePanel").classList.add("hidden");
-    document.getElementById("medicalPanel").classList.remove("hidden");
-    document.getElementById("adminPanel").classList.add("hidden");
-  }
-}
-function showTab(which){
-  const admin=which==="admin";
-  document.getElementById("homePanel").classList.toggle("hidden",admin);
-  document.getElementById("medicalPanel").classList.toggle("hidden",admin);
-  document.getElementById("adminPanel").classList.toggle("hidden",!admin);
-  document.getElementById("tabHome").classList.toggle("active",!admin);
-  document.getElementById("tabAdmin").classList.toggle("active",admin);
-  if(admin)renderRates();
-}
+function showHome(){["homePanel","medicalPanel","ladiesPanel","adminPanel"].forEach(id=>document.getElementById(id).classList.toggle("hidden",id!=="homePanel"));document.getElementById("tabHome").classList.add("active");document.getElementById("tabAdmin").classList.remove("active")}
+function openProduct(p){const target=p==="medical"?"medicalPanel":p==="ladies"?"ladiesPanel":null;if(!target)return;["homePanel","medicalPanel","ladiesPanel","adminPanel"].forEach(id=>document.getElementById(id).classList.toggle("hidden",id!==target));document.getElementById("tabHome").classList.remove("active");document.getElementById("tabAdmin").classList.remove("active");if(p==="ladies")updateLadiesQuote()}
+function showTab(which){const admin=which==="admin";["homePanel","medicalPanel","ladiesPanel","adminPanel"].forEach(id=>document.getElementById(id).classList.toggle("hidden",id!==(admin?"adminPanel":"homePanel")));document.getElementById("tabHome").classList.toggle("active",!admin);document.getElementById("tabAdmin").classList.toggle("active",admin);if(admin)renderRates()}
 function formatDob(dob){
   if(!dob)return "—";
   const d=new Date(dob+"T00:00:00");
   return d.toLocaleDateString("en-GB",{day:"2-digit",month:"long",year:"numeric"});
 }
+function getLadiesRates(){try{const x=JSON.parse(localStorage.getItem(LADIES_STORAGE_KEY));if(Array.isArray(x)&&x.length)return x}catch(e){}return ORIGINAL_LADIES_RATES.map(x=>({...x}))}
+function saveLadiesRates(r){localStorage.setItem(LADIES_STORAGE_KEY,JSON.stringify(r))}
+let selectedLadiesPlan="A";
+function selectLadiesPlan(plan){selectedLadiesPlan=plan;document.getElementById("ladiesPlanA").classList.toggle("selected",plan==="A");document.getElementById("ladiesPlanB").classList.toggle("selected",plan==="B");document.getElementById("ladiesSummaryA").classList.toggle("hidden",plan!=="A");document.getElementById("ladiesSummaryB").classList.toggle("hidden",plan!=="B");updateLadiesQuote()}
+function ladiesQuoteData(){const name=document.getElementById("ladiesName").value.trim()||"Prospect",dob=document.getElementById("ladiesDob").value,age=dob?calcAge(dob):null,row=age==null?null:getLadiesRates().find(r=>Number(r.age)===Number(age)),rate=row?(selectedLadiesPlan==="A"?Number(row.planA):Number(row.planB)):null;return {name,dob,age,plan:selectedLadiesPlan,planName:selectedLadiesPlan==="A"?"Plan A":"Plan B",benefit:selectedLadiesPlan==="A"?"RM50,000 protection":"RM50,000 protection with MomCare benefit",rate}}
+function updateLadiesQuote(){const q=ladiesQuoteData(),result=document.getElementById("ladiesResult");if(!q.dob){result.classList.add("hidden");return}result.classList.remove("hidden");document.getElementById("ladiesAgePill").textContent="Age "+q.age;document.getElementById("ladiesPlanPill").textContent=q.planName;document.getElementById("ladiesPrice").innerHTML=(q.rate==null?"Rate unavailable":money(q.rate))+" <small>/ month</small>"}
+function ladiesQuoteText(){const q=ladiesQuoteData();return `${q.name}\nLADIES PROTECTION — QUICK QUOTATION\n\nProspect Details\nAge: ${q.age==null?"—":q.age}\nDate of Birth: ${formatDob(q.dob)}\nSelected Plan: ${q.planName}\nBenefits: ${q.benefit}\n\nEstimated Monthly Contribution: ${q.rate==null?"Rate unavailable":money(q.rate)+" / month"}\n\nIndicative quotation only. Final contribution is subject to eligibility, underwriting, certificate terms and conditions, and the applicable official quotation.`}
+function copyLadiesQuote(){const txt=ladiesQuoteText();if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>{generateLadiesPdf();showToast("Ladies quote copied + PDF generated")}).catch(()=>{generateLadiesPdf();showToast("PDF generated; copy unavailable")})}else{generateLadiesPdf();showToast("PDF generated; copy unavailable")}}
+function generateLadiesPdf(){const q=ladiesQuoteData(),lines=["JOM QUOTE","LADIES PROTECTION - QUICK QUOTATION","","PROSPECT DETAILS",`Name: ${q.name}`,`Age: ${q.age==null?"—":q.age}`,`Date of Birth: ${formatDob(q.dob)}`,`Selected Plan: ${q.planName}`,`Benefits: ${q.benefit}`,"",`ESTIMATED MONTHLY CONTRIBUTION: ${q.rate==null?"Rate unavailable":money(q.rate)+" / month"}`,"","DISCLAIMER","Indicative quotation only. Final contribution is subject to eligibility,","underwriting, certificate terms and conditions, and the applicable","official quotation."],pageW=595,pageH=842,left=48,top=790,bottom=48,lineH=16,chunks=[];let current=[],y=top;for(const line of lines){const h=(line==="JOM QUOTE"||line==="LADIES PROTECTION - QUICK QUOTATION"||line.startsWith("ESTIMATED MONTHLY"))?20:lineH;if(y-h<bottom){chunks.push(current);current=[];y=top}current.push({line,y,bold:line==="JOM QUOTE"||line==="LADIES PROTECTION - QUICK QUOTATION"||line.startsWith("ESTIMATED MONTHLY")||line.endsWith("DETAILS")||line==="DISCLAIMER"});y-=h}if(current.length)chunks.push(current);const objects=[`<< /Type /Catalog /Pages 2 0 R >>`,``,`<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>`,`<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>`],pageNums=[];chunks.forEach(page=>{const content=["BT"];page.forEach(item=>{const size=item.bold?(item.line.startsWith("ESTIMATED")?16:item.line==="JOM QUOTE"?18:13):10;content.push(`/${item.bold?"FB":"FR"} ${size} Tf`,`1 0 0 1 ${left} ${item.y} Tm`,`(${pdfEscape(item.line)}) Tj`)});content.push("ET");const stream=content.join("\n"),contentObj=objects.length+1;objects.push(`<< /Length ${new TextEncoder().encode(stream).length} >>\nstream\n${stream}\nendstream`);const pageObj=objects.length+1;objects.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${pageW} ${pageH}] /Resources << /Font << /FR 3 0 R /FB 4 0 R >> >> /Contents ${contentObj} 0 R >>`);pageNums.push(pageObj)});objects[1]=`<< /Type /Pages /Kids [${pageNums.map(n=>n+" 0 R").join(" ")}] /Count ${pageNums.length} >>`;let pdf="%PDF-1.4\n";const offsets=[0];for(let i=0;i<objects.length;i++){offsets[i+1]=new TextEncoder().encode(pdf).length;pdf+=`${i+1} 0 obj\n${objects[i]}\nendobj\n`}const xref=new TextEncoder().encode(pdf).length;pdf+=`xref\n0 ${objects.length+1}\n0000000000 65535 f \n`;for(let i=1;i<offsets.length;i++)pdf+=String(offsets[i]).padStart(10,"0")+" 00000 n \n";pdf+=`trailer\n<< /Size ${objects.length+1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`;const blob=new Blob([pdf],{type:"application/pdf"}),a=document.createElement("a"),safe=(q.name||"Prospect").replace(/[^a-z0-9_-]+/gi,"_").replace(/^_+|_+$/g,"")||"Prospect",url=URL.createObjectURL(blob);a.href=url;a.download=`Jom-Quote-Ladies-${safe}.pdf`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+function printLadiesQuote(){generateLadiesPdf()}
+function resetLadiesQuote(){document.getElementById("ladiesName").value="";document.getElementById("ladiesDob").value="";selectLadiesPlan("A");document.getElementById("ladiesResult").classList.add("hidden")}
 function quoteData(){
   const name=document.getElementById("name").value.trim()||"Prospect",dob=document.getElementById("dob").value;
   const g=document.getElementById("gender").value,s=document.getElementById("smoker").value,a=calcAge(dob),rate=selectedRate(a,g,s);
@@ -389,25 +440,21 @@ function resetQuote(){
   document.getElementById("result").classList.add("hidden");
 }
 function showToast(s){const t=document.getElementById("toast");t.textContent=s;t.style.display="block";setTimeout(()=>t.style.display="none",1800)}
-function renderRates(){
-  const body=document.getElementById("rateBody");if(!body)return;body.innerHTML="";
-  getRates().forEach((r,i)=>{
-    const tr=document.createElement("tr");
-    tr.innerHTML=`<td>${r.age}</td>
-    <td><input type="number" value="${r.maleNS}" onchange="editRate(${i},'maleNS',this.value)"></td>
-    <td><input type="number" value="${r.maleS}" onchange="editRate(${i},'maleS',this.value)"></td>
-    <td><input type="number" value="${r.femaleNS}" onchange="editRate(${i},'femaleNS',this.value)"></td>
-    <td><input type="number" value="${r.femaleS}" onchange="editRate(${i},'femaleS',this.value)"></td>`;
-    body.appendChild(tr);
-  });
-}
-function editRate(i,k,v){const r=getRates();r[i][k]=Number(v);saveRates(r);updateQuote();showToast("Rate saved")}
-function resetRates(){if(confirm("Reset all rates to original Excel values?")){saveRates(ORIGINAL_RATES.map(x=>({...x})));renderRates();updateQuote();showToast("Original rates restored")}}
+function renderRates(){const product=document.getElementById("adminProduct").value,medicalCard=document.getElementById("medicalRatesCard"),ladiesCard=document.getElementById("ladiesRatesCard");medicalCard.classList.toggle("hidden",product!=="medical");ladiesCard.classList.toggle("hidden",product!=="ladies");if(product==="ladies"){renderLadiesRates();return}const body=document.getElementById("rateBody");if(!body)return;body.innerHTML="";getRates().forEach((r,i)=>{const tr=document.createElement("tr");tr.innerHTML=`<td>${r.age}</td><td><input type="number" value="${r.maleNS}" onchange="editRate(${i},'maleNS',this.value)"></td><td><input type="number" value="${r.maleS}" onchange="editRate(${i},'maleS',this.value)"></td><td><input type="number" value="${r.femaleNS}" onchange="editRate(${i},'femaleNS',this.value)"></td><td><input type="number" value="${r.femaleS}" onchange="editRate(${i},'femaleS',this.value)"></td>`;body.appendChild(tr)})}
+function renderLadiesRates(){const body=document.getElementById("ladiesRateBody");if(!body)return;body.innerHTML="";getLadiesRates().forEach((r,i)=>{const tr=document.createElement("tr");tr.innerHTML=`<td>${r.age}</td><td><input aria-label="Age ${r.age} Plan A monthly rate" type="number" min="0" step="0.01" value="${r.planA}" onchange="editLadiesRate(${i},'planA',this.value)"></td><td><input aria-label="Age ${r.age} Plan B monthly rate" type="number" min="0" step="0.01" value="${r.planB}" onchange="editLadiesRate(${i},'planB',this.value)"></td>`;body.appendChild(tr)})}
+function editRate(i,k,v){const r=getRates();r[i][k]=Number(v);saveRates(r);updateQuote();showToast("Medical Card rate saved")}
+function editLadiesRate(i,k,v){const r=getLadiesRates();r[i][k]=Number(v);saveLadiesRates(r);updateLadiesQuote();showToast("Ladies Protection rate saved")}
+function resetRates(){if(confirm("Reset Medical Card rates to original values?")){saveRates(ORIGINAL_RATES.map(x=>({...x})));renderRates();updateQuote();showToast("Medical Card rates restored")}}
+function resetLadiesRates(){if(confirm("Reset Ladies Protection rates to initial Excel values?")){saveLadiesRates(ORIGINAL_LADIES_RATES.map(x=>({...x})));renderLadiesRates();updateLadiesQuote();showToast("Ladies rates restored")}}
 function exportRates(){const blob=new Blob([JSON.stringify(getRates(),null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="jom-quote-medical-rates.json";a.click();URL.revokeObjectURL(a.href)}
-function importRates(e){const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const x=JSON.parse(rd.result);if(!Array.isArray(x)||!x.length||!x[0].age)throw Error();saveRates(x);renderRates();updateQuote();showToast("Rates imported")}catch(err){alert("Invalid rate file.")}};rd.readAsText(f);e.target.value=""}
+function importRates(e){const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const x=JSON.parse(rd.result);if(!Array.isArray(x)||!x.length||!x[0].age||!("maleNS" in x[0]))throw Error();saveRates(x);renderRates();updateQuote();showToast("Medical Card rates imported")}catch(err){alert("Invalid Medical Card rate file.")}};rd.readAsText(f);e.target.value=""}
+function exportLadiesRates(){const blob=new Blob([JSON.stringify(getLadiesRates(),null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="jom-quote-ladies-rates.json";a.click();URL.revokeObjectURL(a.href)}
+function importLadiesRates(e){const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{try{const x=JSON.parse(rd.result);if(!Array.isArray(x)||!x.length||!("planA" in x[0])||!("planB" in x[0]))throw Error();saveLadiesRates(x);renderLadiesRates();updateLadiesQuote();showToast("Ladies rates imported")}catch(err){alert("Invalid Ladies Protection rate file.")}};rd.readAsText(f);e.target.value=""}
 ["dob","gender","smoker"].forEach(id=>document.getElementById(id)?.addEventListener("input",updateQuote));
 document.getElementById("dob")?.addEventListener("change",updateQuote);
-renderRates();
+["ladiesName","ladiesDob"].forEach(id=>document.getElementById(id)?.addEventListener("input",updateLadiesQuote));
+document.getElementById("ladiesDob")?.addEventListener("change",updateLadiesQuote);
+renderRates();renderLadiesRates();
 </script>
 <script>
 if ("serviceWorker" in navigator) {
